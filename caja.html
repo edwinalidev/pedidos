@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="sistema de inventarios" />
+    <meta name="author" content="Edwin Hugo Ali Quispe" />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="imgge/png"
+      href="../img/favicon/ico_16.png"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../img/favicon/ico_32.png"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../img/favicon/ico_64.png"
+      sizes="64x64"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Pedidos Online</title>
+  </head>
+  <body>
+    <div>
+      <button class="btn btn-success rounded-pill" type="button">
+        Adicionar
+      </button>
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table table-responsive-sm table-hover" id="tableGastos">
+            <thead>
+              <th>Detalle</th>
+              <th>Cantidad</th>
+              <th>Total</th>
+            </thead>
+            <tbody id="bodyGastos">
+              <tr>
+                <td>Huevos</td>
+                <td>23</td>
+                <td>34</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Modal trigger button -->
+      <button  type="button" class="btn btn-primary btn-lg"
+        data-bs-toggle="modal"
+        data-bs-target="#modalId"
+      > Add Gasto
+      </button>
+      <div class="col-12 col-md-6">
+        <table class="table table-striped table-bordered table-hover " id="tblPersonal">
+          <thead>
+              <th>Nombre</th>
+              <th>CI</th>
+              <th>Monto</th>
+              <th>Action</th>
+          </thead>
+          <tbody>
+
+          </tbody>
+          <tfoot>
+
+          </tfoot>
+        </table>
+      </div>
+      <button type="button" class="btn btn-primary btn-" data-bs-toggle="modal" data-bs-target="#modPersonal">Add Personal</button>
+      <!-- Modal Body -->
+      <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+      <div
+        class="modal fade"
+        id="modalId"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalTitleId"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-scrollable modal-dialog-centered "
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitleId">Control de gastos</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form action="">
+                <div class="row">
+                  <div class="col-12">
+                    <label for="gasDetalle" class="form-label m-0"
+                      >Detalle de Gasto</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control mb-3"
+                      id="gasDetalle"
+                      name="gasDetalle"
+                      placeholder="" required
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="mb-3 col-6">
+                    <label for="gasCamtidad" class="form-label m-0"
+                      >Cantidad</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="gasCantidad"
+                      name="gasCantidad"
+                      placeholder=""
+                    />
+                  </div>
+                  <div class="mb-3 col-6">
+                    <label for="gasTotal" class="form-label m-0"
+                      >Total</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="gasTotal"
+                      name="gasTotal"
+                      placeholder="" required
+                    />
+                  </div>
+                </div>
+            
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success">
+                Guardar
+              </button>
+              <button type="button" data-bs-dismiss="modal" class="btn btn-danger">Cancelar</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Body -->
+      <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+      <div
+        class="modal fade"
+        id="modPersonal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalTitleId"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-scrollable modal-dialog-centered "
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitleId">Gastos de Personal</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form action="">
+                <div class="row">
+                  <div class="col-12 col-md-4">
+                    <label for="perCi" class="form-label m-0"
+                      >CI</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control mb-3"
+                      id="perCi"
+                      name="perCi"
+                      placeholder="" required
+                    />
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <label for="perNombre" class="form-label m-0"
+                      >Nombre</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control mb-3"
+                      id="perNombre"
+                      name="perNombre"
+                      placeholder="" required
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="mb-3 col-12 col-md-6">
+                    <label for="perCelular" class="form-label m-0"
+                      >Celular</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="perCelular"
+                      name="perCelular"
+                      placeholder=""
+                    />
+                  </div>
+                  <div class="mb-3 col-12 col-md-6">
+                    <label for="perTotal" class="form-label m-0"
+                      >Total</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="perTotal"
+                      name="perTotal"
+                      placeholder="" required
+                    />
+                  </div>
+                </div>
+            
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success">
+                Guardar
+              </button>
+              <button type="button" data-bs-dismiss="modal" class="btn btn-danger">Cancelar</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Optional: Place to the bottom of scripts -->
+      <script>
+        const myModal = new bootstrap.Modal(
+          document.getElementById("modalId"),
+          options
+        );
+      </script>
+    </div>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    var tooltipTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  </script>
+</html>

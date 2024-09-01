@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
+  </head>
+  <body>
+    <form id="personalForm">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required /><br />
+
+      <label for="ci">CI:</label>
+      <input type="text" id="ci" name="ci" required /><br />
+
+      <label for="celular">Celular:</label>
+      <input type="text" id="celular" name="celular" required /><br />
+
+      <label for="monto">Monto:</label>
+      <input type="text" id="monto" name="monto" required /><br />
+
+      <label for="idUser">ID Usuario:</label>
+      <input type="text" id="idUser" name="idUser" required /><br />
+
+      <input
+        type="hidden"
+        value="3"
+        id="idPersonal"
+        name="idPersonal"
+      /><!-- Campo oculto para idPersonal -->
+
+      <button type="submit">Enviar</button>
+    </form>
+    <table id="personalTable" border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Fecha</th>
+          <th>Nombre</th>
+          <th>CI</th>
+          <th>Celular</th>
+          <th>Monto</th>
+          <th>ID Usuario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Los datos se insertarán aquí -->
+      </tbody>
+    </table>
+
+    <script src="script.js"></script>
+  </body>
+</html>

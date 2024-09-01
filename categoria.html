@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Operaciones API</title>
+</head>
+<body>
+    <label for="txtDetalle">Detalle:</label>
+    <input id="txtDetalle" type="text" autocomplete="off">
+    <select id="categoriaSelect"></select>
+    <button onclick="insertCategory()">Insertar Nueva Categoría</button>
+    <button onclick="updateCategory()">Actualizar Categoría Existente</button>
+    <button onclick="deleteCategory()">Eliminar Categoría</button>
+
+    <script src="categoria.js"></script>
+    <script>
+        const url="http://localhost/pedidos/api/v1/categorias.php"
+        document.addEventListener("DOMContentLoaded", function() {
+        cargarCategoriasEnSelect(url, "categoriaSelect");
+        });
+        function selectCategory(category) {
+
+        }
+function insertNewCategory() {
+            Swal.fire({
+                title: 'Ingrese una categoría:',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Guardar',
+                cancelButtonText: 'Cancelar',
+                showLoaderOnConfirm: true,
+                preConfirm: (categoria) => {
+                    if (!categoria) {
+                        Swal.showValidationMessage('No hay datos para ingresar.');
+                    }
+                    return categoria;
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const categoria = result.value;
+                    // Puedes enviar la categoría a tu función para insertar en la API
+                    addCategoria(categoria);
+                }
+            });
+}
+        function updateCategory() {
+            const select=document.getElementById("categoriaSelect");
+            var indiceSeleccionado = select.selectedIndex;
+            // Obtener el texto del elemento seleccionado
+            var Detalle = select.options[indiceSeleccionado].text;
+            const id=select.value;
+            Swal.fire({
+                title: 'Ingrese una categoría:',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                inputValue: Detalle,
+                showCancelButton: true,
+                confirmButtonText: 'Guardar',
+                cancelButtonText: 'Cancelar',
+                showLoaderOnConfirm: true,
+                preConfirm: (categoria) => {
+                    if (!categoria) {
+                        Swal.showValidationMessage('La categoría no puede estar vacía');
+                    }
+                    return categoria;
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Aquí puedes hacer algo con el valor ingresado
+                    const categoria = result.value;
+                    // Puedes enviar la categoría a tu función para insertar en la API
+                    editCategoria(id,categoria);
+                }
+            });
+        }
+        function deleteCategory() {
+            const select=document.getElementById("categoriaSelect");
+            const idCategoriaAEliminar = select.value;
+            delCategoria(url, idCategoriaAEliminar)
+                .then(() => {
+                    // Después de eliminar, recargar las categorías en el select
+                    cargarCategoriasEnSelect(url, "categoriaSelect");
+                });
+        }
+    </script>
+
+</body>
+</html>
